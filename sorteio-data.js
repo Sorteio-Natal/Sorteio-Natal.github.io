@@ -1,7 +1,7 @@
 // Dados do sorteio - SUBSTITUIR COM OS RESULTADOS REAIS DO TEU SORTEIO
 const sorteioFinal = {
-    'Miguel': 'Vanessa',
-    'Maria': 'Tia Ze', 
+    'Miguel': 'Tia Ze',
+    'Maria': 'Vanessa', 
     'Ricardo': 'Isabel F',
     'Fernando': 'Rita',
     'Gloria': 'To',
