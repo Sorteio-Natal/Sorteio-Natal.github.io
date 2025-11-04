@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Sorteio de Natal 🎄</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a5f23, #2d8a3a);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        input {
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            font-size: 16px;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background: #ff5252;
+        }
+        .resultado {
+            background: white;
+            color: #2d8a3a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        .codigo-input {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .snowflake {
+            position: fixed;
+            color: white;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎅 Sorteio de Natal 2024 🎁</h1>
+        <p>Descobre para quem vais dar o presente este ano!</p>
+        
+        <div id="loginSection">
+            <h3>Insere o Teu Código Pessoal:</h3>
+            <input type="text" id="codigoInput" placeholder="Ex: N12345" class="codigo-input">
+            <br>
+            <button onclick="verificarCodigo()">🎄 Descobrir Amigo Secreto 🎄</button>
+        </div>
+        
+        <div id="resultadoSection" class="resultado">
+            <h2>🎅 O Teu Amigo Secreto é... 🎅</h2>
+            <div id="resultadoNome" style="font-size: 24px; font-weight: bold; margin: 20px 0;"></div>
+            <button onclick="voltar()">🔒 Fechar Resultado</button>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+            <p>Guarda o teu código em segredo! ❄️</p>
+        </div>
+    </div>
+
+    <script src="sorteio-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
