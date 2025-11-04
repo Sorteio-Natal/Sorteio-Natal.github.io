@@ -44,7 +44,7 @@ const codigosPessoais = {
     'Vanessa': 'N49267',
     'Sofia': 'N51839',
     'To': 'N67412',
-    'Lucia': 'N78523',
+    'Lucia Paula': 'N78523',
     'Filipa': 'N83156',
     'Francisco': 'N94627',
     'Isabel Freitas': 'N12384',
