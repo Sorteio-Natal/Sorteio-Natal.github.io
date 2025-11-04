@@ -80,7 +80,7 @@ function criarNeve() {
             snowflake.style.transition = 'all ' + (Math.random() * 3 + 5) + 's linear';
             snowflake.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`;
             snowflake.style.opacity = '0';
-        }, 100);
+        }, 50);
         
         // Remover após animação
         setTimeout(() => {
