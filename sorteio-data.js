@@ -1,7 +1,7 @@
 const sorteioFinal = {
     'Miguel': '(Teste)Vanessa',
     'Maria': '(Teste)Tia Ze', 
-    'Ricardo': '(Teste)Isabel F',
+    'Ricardo': '(Teste)Isabel Freitas',
     'Fernando': '(Teste)Rita',
     'Gloria': '(Teste)To',
     'Marcelo': '(Teste)Gloria',
@@ -47,7 +47,7 @@ const codigosPessoais = {
     'Lucia': 'N78523',
     'Filipa': 'N83156',
     'Francisco': 'N94627',
-    'Isabel F': 'N12384',
+    'Isabel Freitas': 'N12384',
     'Beta': 'N23495',
     'Rui': 'N34516',
     'Tia Rosa': 'N45627',
