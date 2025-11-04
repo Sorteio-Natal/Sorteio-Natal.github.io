@@ -19,7 +19,8 @@ function verificarCodigo() {
         // Mostrar resultado com animação
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('resultadoSection').style.display = 'block';
-        
+
+        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
         // Animação de revelação
         revelarResultado(amigoSecreto);
     } else {
