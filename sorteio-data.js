@@ -43,10 +43,10 @@ const codigosPessoais = {
     'Vanessa': 'N49267',
     'Sofia': 'N51839',
     'To': 'N67412',
-    'Lucia': 'N78523',
+    'Lucia Paula': 'N78523',
     'Filipa': 'N83156',
     'Francisco': 'N94627',
-    'Isabel F': 'N12384',
+    'Isabel Freitas': 'N12384',
     'Beta': 'N23495',
     'Rui': 'N34516',
     'Tia Rosa': 'N45627',
@@ -55,4 +55,5 @@ const codigosPessoais = {
     'Roberto': 'N78951',
     'Avó Candida': 'N89162'
 };
+
 
