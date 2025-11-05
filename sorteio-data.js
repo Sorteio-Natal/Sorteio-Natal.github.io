@@ -35,14 +35,14 @@ const codigosPessoais = {
     'Gloria': 'N56321',
     'Marcelo': 'N68947',
     'Rita': 'N74258',
-    'Tia Ze': 'N81563',
+    'Maria José': 'N81563',
     'Mafalda': 'N92634',
     'Zé Carlos': 'N13475',
     'Isabel Silva': 'N25789',
     'Diogo': 'N36842',
     'Vanessa': 'N49267',
     'Sofia': 'N51839',
-    'To': 'N67412',
+    'Tó': 'N67412',
     'Lucia Paula': 'N78523',
     'Filipa': 'N83156',
     'Francisco': 'N94627',
@@ -55,6 +55,7 @@ const codigosPessoais = {
     'Roberto': 'N78951',
     'Avó Candida': 'N89162'
 };
+
 
 
 
