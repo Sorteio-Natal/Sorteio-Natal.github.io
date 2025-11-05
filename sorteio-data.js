@@ -17,7 +17,7 @@ const sorteioFinal = {
     'Lucia Paula': '(Teste)Tia Rosa',
     'Filipa': '(Teste)Diogo',
     'Francisco': '(Teste)Sofia',
-    'Isabel F': '(Teste)Tia Dete',
+    'Isabel Freitas': '(Teste)Tia Dete',
     'Beta': '(Teste)Isabel Silva',
     'Rui': '(Teste)Roberto',
     'Tia Rosa': '(Teste)Miguel',
