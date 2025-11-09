@@ -19,9 +19,9 @@ function verificarCodigo() {
         // Mostrar resultado com animação
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('resultadoSection').style.display = 'block';
-
-        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
+        
         // Animação de revelação
+        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
         revelarResultado(amigoSecreto);
     } else {
         alert('Código inválido! Verifica o código e tenta novamente.');
@@ -63,7 +63,7 @@ document.getElementById('codigoInput').addEventListener('keypress', function(e) 
 
 // Efeito de neve
 function criarNeve() {
-    const snowflakes = ['❄️', '⛄', '🎄', '🎁', '⭐'];
+    const snowflakes = ['❄️','❄️','❄️','❄️', '⛄', '🎄', '🎁', '⭐'];
     
     setInterval(() => {
         const snowflake = document.createElement('div');
@@ -80,7 +80,7 @@ function criarNeve() {
             snowflake.style.transition = 'all ' + (Math.random() * 3 + 5) + 's linear';
             snowflake.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`;
             snowflake.style.opacity = '0';
-        }, 50);
+        }, 100);
         
         // Remover após animação
         setTimeout(() => {
@@ -88,6 +88,167 @@ function criarNeve() {
         }, 8000);
     }, 300);
 }
+
+// Variáveis globais
+let amigoSecretoAtual = null;
+let pessoaAtual = null;
+let minhaWishlistAtual = [];
+
+// Função para gerir desejos - ATUALIZADA
+function gerirDesejos() {
+    const codigoInput = document.getElementById('codigoInput').value.trim().toUpperCase();
+    
+    if (!codigoInput) {
+        alert('Por favor, insere o teu código primeiro!');
+        return;
+    }
+    
+    if (codigoParaNome[codigoInput]) {
+        pessoaAtual = codigoParaNome[codigoInput];
+        amigoSecretoAtual = sorteioFinal[pessoaAtual];
+        
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('desejosSection').style.display = 'block';
+        
+        carregarMinhaLista();
+        carregarListaAmigo();
+    } else {
+        alert('Código inválido!');
+    }
+}
+
+// Carregar minha lista - ATUALIZADA
+async function carregarMinhaLista() {
+    minhaWishlistAtual = await obterWishlistPorNome(pessoaAtual);
+    atualizarInterfaceLista();
+}
+
+// Atualizar a interface da lista
+function atualizarInterfaceLista() {
+    const itensLista = document.getElementById('itensLista');
+    itensLista.innerHTML = '';
+    
+    if (minhaWishlistAtual.length === 0) {
+        itensLista.innerHTML = '<li style="text-align: center; color: #666;">A tua lista está vazia. Adiciona alguns itens! 🎁</li>';
+        return;
+    }
+    
+    minhaWishlistAtual.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.style.padding = '8px';
+        li.style.margin = '5px 0';
+        li.style.background = 'white';
+        li.style.borderRadius = '5px';
+        li.style.display = 'flex';
+        li.style.justifyContent = 'space-between';
+        li.style.alignItems = 'center';
+        
+        li.innerHTML = `
+            <span style="color: #2d8a3a;">🎁 ${item}</span>
+            <button onclick="removerItem(${index})" style="background: #ff4444; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer;">×</button>
+        `;
+        
+        itensLista.appendChild(li);
+    });
+}
+
+// Adicionar item à lista
+function adicionarItem() {
+    const novoItemInput = document.getElementById('novoItemInput');
+    const novoItem = novoItemInput.value.trim();
+    
+    if (!novoItem) {
+        alert('Por favor, escreve um item!');
+        return;
+    }
+    
+    if (minhaWishlistAtual.includes(novoItem)) {
+        alert('Este item já está na tua lista!');
+        return;
+    }
+    
+    minhaWishlistAtual.push(novoItem);
+    novoItemInput.value = '';
+    atualizarInterfaceLista();
+    
+    // Mostrar feedback
+    const statusDiv = document.getElementById('minhaListaStatus');
+    statusDiv.innerHTML = '✅ Item adicionado! Não te esqueças de guardar.';
+    statusDiv.style.color = 'green';
+    setTimeout(() => statusDiv.innerHTML = '', 2000);
+}
+
+// Remover item da lista
+function removerItem(index) {
+    minhaWishlistAtual.splice(index, 1);
+    atualizarInterfaceLista();
+    
+    // Mostrar feedback
+    const statusDiv = document.getElementById('minhaListaStatus');
+    statusDiv.innerHTML = '🗑️ Item removido! Não te esqueças de guardar.';
+    statusDiv.style.color = 'orange';
+    setTimeout(() => statusDiv.innerHTML = '', 2000);
+}
+
+// Limpar toda a lista
+function limparLista() {
+    if (confirm('Tens a certeza que queres limpar toda a tua lista?')) {
+        minhaWishlistAtual = [];
+        atualizarInterfaceLista();
+        
+        const statusDiv = document.getElementById('minhaListaStatus');
+        statusDiv.innerHTML = '🗑️ Lista limpa! Não te esqueças de guardar.';
+        statusDiv.style.color = 'orange';
+    }
+}
+
+// Guardar lista - ATUALIZADA
+async function guardarMinhaLista() {
+    const statusDiv = document.getElementById('minhaListaStatus');
+    
+    statusDiv.innerHTML = '⏳ A guardar...';
+    statusDiv.style.color = 'blue';
+    
+    const sucesso = await atualizarWishlist(codigosPessoais[pessoaAtual], minhaWishlistAtual);
+    
+    if (sucesso) {
+        statusDiv.innerHTML = '✅ Lista guardada com sucesso!';
+        statusDiv.style.color = 'green';
+        
+        // Atualizar também a lista do amigo se estiver a ver
+        setTimeout(carregarListaAmigo, 1000);
+    } else {
+        statusDiv.innerHTML = '❌ Erro ao guardar. Tenta novamente.';
+        statusDiv.style.color = 'red';
+    }
+}
+
+// Carregar lista do amigo - ATUALIZADA
+async function carregarListaAmigo() {
+    const listaAmigo = await obterWishlistPorNome(amigoSecretoAtual);
+    const listaAmigoSection = document.getElementById('listaAmigoSection');
+    const listaAmigoContent = document.getElementById('listaAmigoContent');
+    
+    listaAmigoSection.style.display = 'block';
+    
+    if (listaAmigo.length > 0) {
+        let html = `<h4>🎁 Lista de Desejos de ${amigoSecretoAtual}:</h4><ul style="text-align: left; list-style-type: none; padding: 0;">`;
+        
+        listaAmigo.forEach(item => {
+            html += `<li style="padding: 8px; margin: 5px 0; background: #e8f5e8; border-radius: 5px;">🎁 ${item}</li>`;
+        });
+        
+        html += '</ul>';
+        listaAmigoContent.innerHTML = html;
+    } else {
+        listaAmigoContent.innerHTML = `
+            <p>${amigoSecretoAtual} ainda não adicionou a sua lista de desejos.</p>
+            <p>Podes lembrar-lhe para adicionar! 😊</p>
+        `;
+    }
+}
+
+// ... o resto das funções permanece igual (verificarCodigo, voltar, etc.)
 
 // Iniciar efeito de neve
 criarNeve();
