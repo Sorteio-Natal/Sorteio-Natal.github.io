@@ -6,8 +6,10 @@ const API_KEY = 'AIzaSyBxvAWa8WEJuuBbVHHTHLaNUG5C6qIjG9s';
 async function obterTodosDados() {
     try {
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1!A:C?key=${API_KEY}`;
+        console.log('URL chamada para obter dados:', url);
         const response = await fetch(url);
         const data = await response.json();
+        console.log('Resposta da API (obterTodosDados):', data);
         return data.values || [];
     } catch (error) {
         console.error('Erro ao obter dados:', error);
@@ -40,13 +42,19 @@ async function atualizarWishlist(codigo, novaWishlist) {
         const pessoa = await encontrarPessoaPorCodigo(codigo);
         
         if (!pessoa) {
-            // Se a pessoa não existe, criar nova linha
-            return await criarNovaLinha(codigo, novaWishlist);
+            // Se a pessoa não existe
+            console.error('Pessoa não encontrada para o código:', codigo);
+            return false;
         }
 
         // Atualizar linha existente
         const range = `Sheet1!A${pessoa.linhaIndex}:C${pessoa.linhaIndex}`;
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?valueInputOption=RAW&key=${API_KEY}`;
+
+        console.log('URL chamada para atualizar wishlist:', url); // Log da URL
+        console.log('Dados enviados para atualizar wishlist:', JSON.stringify({
+            values: [[pessoa.nome, codigo, JSON.stringify(novaWishlist)]]
+        })); // Log dos dados enviados
 
         const response = await fetch(url, {
             method: 'PUT',
@@ -58,41 +66,11 @@ async function atualizarWishlist(codigo, novaWishlist) {
             })
         });
 
+        const responseText = await response.text();
+        console.log('Resposta da API (atualizarWishlist):', responseText); // Log da resposta
         return response.ok;
     } catch (error) {
         console.error('Erro ao atualizar wishlist:', error);
-        return false;
-    }
-}
-
-// Função para criar nova linha
-async function criarNovaLinha(codigo, wishlist) {
-    try {
-        // Primeiro precisamos do nome da pessoa a partir do código
-        const nome = Object.keys(codigosPessoais).find(
-            nome => codigosPessoais[nome] === codigo
-        );
-        
-        if (!nome) {
-            console.error('Nome não encontrado para o código:', codigo);
-            return false;
-        }
-
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1!A:C:append?valueInputOption=RAW&key=${API_KEY}`;
-        
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                values: [[nome, codigo, JSON.stringify(wishlist)]]
-            })
-        });
-        
-        return response.ok;
-    } catch (error) {
-        console.error('Erro ao criar nova linha:', error);
         return false;
     }
 }
