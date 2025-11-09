@@ -69,7 +69,7 @@
 <body>
     <div class="container">
         <h1>🎅 Sorteio de Natal 2025 🎁</h1>
-        <p>Descobre para quem vais dar o presente este ano!</p>
+        <p>Descobre a quem vais dar o presente este ano!</p>
         
         <div id="loginSection">
             <h3>Insere o Teu Código Pessoal:</h3>
@@ -81,14 +81,55 @@
         <div id="resultadoSection" class="resultado">
             <h2>🎅 O Teu Amigo Secreto é... 🎅</h2>
             <div id="resultadoNome" style="font-size: 24px; font-weight: bold; margin: 20px 0;"></div>
-            <button onclick="voltar()">🔒 Fechar Resultado</button>
+            <button onclick="voltar()">Voltar atrás</button>
         </div>
+
+        <div id="desejosSection" class="resultado" style="display: none;">
+            <h2>📝 Lista de Desejos</h2>
+
+            <div id="minhaListaSection">
+                <h3>📝 A minha Lista de Desejos</h3>
+                        
+                <div id="listaAtual" style="margin: 15px 0; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 8px;">
+                    <h4>Itens na minha lista:</h4>
+                    <ul id="itensLista" style="text-align: left; list-style-type: none; padding: 0;">
+                        <!-- Itens aparecem aqui -->
+                    </ul>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <input type="text" id="novoItemInput" placeholder="Adicionar novo item (ex: Legos)" 
+                           style="padding: 10px; width: 70%; border-radius: 5px; border: none;">
+                    <button onclick="adicionarItem()" style="padding: 10px 15px; margin-left: 10px;">➕ Adicionar</button>
+                </div>
+                
+                <div>
+                    <button onclick="guardarMinhaLista()" style="background: #4CAF50;">💾 Guardar Lista</button>
+                    <button onclick="limparLista()" style="background: #ff9800;">🗑️ Limpar Tudo</button>
+                </div>
+                
+                <div id="minhaListaStatus" style="margin-top: 15px;"></div>
+            </div>
+
+            <div id="listaAmigoSection" style="display: none; margin-top: 30px;">
+                <h3>🎁 Lista de Desejos do Teu Amigo Secreto</h3>
+                <div id="listaAmigoContent" style="background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: left;">
+                    <!-- A lista aparece aqui -->
+                </div>
+            </div>
+
+            <br>
+            <button onclick="voltar()">← Voltar</button>
+        </div>
+
+        <button onclick="gerirDesejos()">📝 Gerir Lista de Desejos</button>
         
         <div style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
-            <p>Guarda o teu código em segredo! ❄️</p>
+            <p>Guarda o teu código em segredo!❄️</p>
         </div>
     </div>
 
+    <script src="google-sheets.js"></script>
     <script src="sorteio-data.js"></script>
     <script src="script.js"></script>
 </body>
