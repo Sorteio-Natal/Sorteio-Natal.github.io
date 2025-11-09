@@ -153,7 +153,7 @@ function atualizarInterfaceLista() {
         
         li.innerHTML = `
             <span style="color: #2d8a3a;">🎁 ${item}</span>
-            <button onclick="removerItem(${index})" style="background: #ff4444; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer;">×</button>
+            <button onclick="removerItem(${index})" style="background: #ff4444; color: black; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
         `;
         
         itensLista.appendChild(li);
