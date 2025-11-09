@@ -4,6 +4,11 @@ Object.keys(codigosPessoais).forEach(nome => {
     codigoParaNome[codigosPessoais[nome]] = nome;
 });
 
+// Variáveis globais
+let amigoSecretoAtual = null;
+let pessoaAtual = null;
+let minhaWishlistAtual = [];
+
 function verificarCodigo() {
     const codigoInput = document.getElementById('codigoInput').value.trim().toUpperCase();
     
@@ -95,11 +100,6 @@ function criarNeve() {
         }, 8000);
     }, 300);
 }
-
-// Variáveis globais
-let amigoSecretoAtual = null;
-let pessoaAtual = null;
-let minhaWishlistAtual = [];
 
 // Função para gerir desejos - ATUALIZADA
 function gerirDesejos() {
