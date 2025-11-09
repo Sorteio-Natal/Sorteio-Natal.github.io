@@ -5,7 +5,7 @@ const API_KEY = 'AIzaSyBxvAWa8WEJuuBbVHHTHLaNUG5C6qIjG9s';
 // Função para obter TODOS os dados da sheet
 async function obterTodosDados() {
     try {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Desejos!A:C?key=${API_KEY}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1!A:C?key=${API_KEY}`;
         const response = await fetch(url);
         const data = await response.json();
         return data.values || [];
@@ -45,7 +45,7 @@ async function atualizarWishlist(codigo, novaWishlist) {
         }
 
         // Atualizar linha existente
-        const range = `Desejos!A${pessoa.linhaIndex}:C${pessoa.linhaIndex}`;
+        const range = `Sheet1!A${pessoa.linhaIndex}:C${pessoa.linhaIndex}`;
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?valueInputOption=RAW&key=${API_KEY}`;
 
         const response = await fetch(url, {
@@ -78,7 +78,7 @@ async function criarNovaLinha(codigo, wishlist) {
             return false;
         }
 
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Desejos!A:C:append?valueInputOption=RAW&key=${API_KEY}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1!A:C:append?valueInputOption=RAW&key=${API_KEY}`;
         
         const response = await fetch(url, {
             method: 'POST',
