@@ -28,6 +28,7 @@ const sorteioFinal = {
 };
 
 const codigosPessoais = {
+    'Teste': 'N54321',
     'Miguel': 'N28471',
     'Maria': 'N39285',
     'Ricardo': 'N15632',
@@ -55,6 +56,7 @@ const codigosPessoais = {
     'Roberto': 'N78951',
     'Avó Candida': 'N89162'
 };
+
 
 
 
