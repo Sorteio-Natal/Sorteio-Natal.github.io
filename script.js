@@ -13,16 +13,22 @@ function verificarCodigo() {
     }
     
     if (codigoParaNome[codigoInput]) {
-        const nomePessoa = codigoParaNome[codigoInput];
-        const amigoSecreto = sorteioFinal[nomePessoa];
+        pessoaAtual = codigoParaNome[codigoInput];
+        amigoSecretoAtual = sorteioFinal[pessoaAtual];
         
         // Mostrar resultado com animação
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('resultadoSection').style.display = 'block';
         
         // Animação de revelação
-        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
-        revelarResultado(amigoSecreto);
+        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${pessoaAtual}! O Teu Amigo Secreto é... 🎅`;
+        revelarResultado(amigoSecretoAtual);
+
+        // Mostrar botões de ação APÓS a revelação
+        setTimeout(() => {
+            document.getElementById('botoesAcao').style.display = 'block';
+        }, 1500);
+        
     } else {
         alert('Código inválido! Verifica o código e tenta novamente.');
     }
@@ -52,6 +58,7 @@ function voltar() {
     document.getElementById('loginSection').style.display = 'block';
     document.getElementById('codigoInput').value = '';
     document.getElementById('resultadoNome').innerHTML = '';
+    document.getElementById('botoesAcao').style.display = 'none';
 }
 
 // Enter para submeter
@@ -243,12 +250,35 @@ async function carregarListaAmigo() {
     } else {
         listaAmigoContent.innerHTML = `
             <p>${amigoSecretoAtual} ainda não adicionou a sua lista de desejos.</p>
-            <p>Podes lembrar-lhe para adicionar! 😊</p>
         `;
     }
 }
 
-// ... o resto das funções permanece igual (verificarCodigo, voltar, etc.)
+function verListaAmigo() {
+    // Ir para a página de desejos e mostrar apenas a lista do amigo
+    document.getElementById('resultadoSection').style.display = 'none';
+    document.getElementById('desejosSection').style.display = 'block';
+    document.getElementById('minhaListaSection').style.display = 'none';
+    document.getElementById('listaAmigoSection').style.display = 'block';
+    
+    carregarListaAmigo();
+}
+
+function gerirMinhaLista() {
+    // Ir para a página de desejos e mostrar apenas a gestão da própria lista
+    document.getElementById('resultadoSection').style.display = 'none';
+    document.getElementById('desejosSection').style.display = 'block';
+    document.getElementById('minhaListaSection').style.display = 'block';
+    document.getElementById('listaAmigoSection').style.display = 'none';
+    
+    carregarMinhaLista();
+}
+
+function voltarParaResultado() {
+    // Voltar da página de desejos para a página de resultado
+    document.getElementById('desejosSection').style.display = 'none';
+    document.getElementById('resultadoSection').style.display = 'block';
+}
 
 // Iniciar efeito de neve
 criarNeve();
