@@ -18,16 +18,20 @@ function verificarCodigo() {
     }
     
     if (codigoParaNome[codigoInput]) {
-        pessoaAtual = codigoParaNome[codigoInput];
-        amigoSecretoAtual = sorteioFinal[pessoaAtual];
+        const nomePessoa = codigoParaNome[codigoInput];
+        const amigoSecreto = sorteioFinal[nomePessoa];
+        
+        // Guardar nas variáveis globais
+        pessoaAtual = nomePessoa;
+        amigoSecretoAtual = amigoSecreto;
         
         // Mostrar resultado com animação
         document.getElementById('loginSection').style.display = 'none';
         document.getElementById('resultadoSection').style.display = 'block';
         
         // Animação de revelação
-        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${pessoaAtual}! O Teu Amigo Secreto é... 🎅`;
-        revelarResultado(amigoSecretoAtual);
+        document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
+        revelarResultado(amigoSecreto);
 
         // Mostrar botões de ação APÓS a revelação
         setTimeout(() => {
