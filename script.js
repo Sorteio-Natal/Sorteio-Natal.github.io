@@ -33,10 +33,7 @@ function verificarCodigo() {
         document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
         revelarResultado(amigoSecreto);
 
-        // Mostrar botões de ação APÓS a revelação
-        setTimeout(() => {
-            document.getElementById('botoesAcao').style.display = 'block';
-        }, 1500);
+        document.getElementById('botoesAcao').style.display = 'block';
         
     } else {
         alert('Código inválido! Verifica o código e tenta novamente.');
