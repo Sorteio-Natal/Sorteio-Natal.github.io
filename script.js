@@ -119,7 +119,6 @@ function gerirDesejos() {
         document.getElementById('desejosSection').style.display = 'block';
         
         carregarMinhaLista();
-        carregarListaAmigo();
     } else {
         alert('Código inválido!');
     }
