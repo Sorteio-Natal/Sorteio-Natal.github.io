@@ -60,11 +60,11 @@ async function atualizarWishlist(codigo, novaWishlist) {
             body: JSON.stringify({
                 nome: nome,
                 codigo: codigo,
-                wishlist: novaWishlist
+                wishlist:JSON.stringify(novaWishlist)
             })
         });
 
-        console.log('📊 Resposta do backend - Status:', response.status);
+        console.log('Resposta do backend - Status:', response.status);
         
         if (!response.ok) {
             const errorText = await response.text();
@@ -91,8 +91,11 @@ async function obterWishlistPorNome(nome) {
         for (let i = 1; i < todosDados.length; i++) {
             const linha = todosDados[i];
             if (linha[0] === nome) {
+                const wishlistStr = linha[2] || '[]';
+                console.log('Wishlist string encontrada:', wishlistStr);
                 try {
-                    return JSON.parse(linha[2] || '[]');
+                    const cleanedStr = wishlistStr.replace(/^"+|"+$/g, '');
+                    return JSON.parse(cleanedStr);
                 } catch (error) {
                     console.error('Erro ao parsar wishlist', parseError);
                     return [];
