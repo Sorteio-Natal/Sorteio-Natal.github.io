@@ -1,11 +1,9 @@
-// Configuração do Google Sheets
-const SHEET_ID = '1eJ7pn4HQbqS1oToSgQ0ZPHyw-n1IMklUW1dVldxrevE';
-const API_KEY = 'AIzaSyBxvAWa8WEJuuBbVHHTHLaNUG5C6qIjG9s';
+const BACKEND_URL =  'https://sorteio-backend-819546592483.europe-west1.run.app';
 
 // Função para obter TODOS os dados da sheet
 async function obterTodosDados() {
     try {
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1!A:C?key=${API_KEY}`;
+        const url = 'https://sorteio-backend-abc123.a.run.app/obter-dados'; // Endpoint do backend
         console.log('URL chamada para obter dados:', url);
         const response = await fetch(url);
         const data = await response.json();
@@ -39,36 +37,31 @@ async function encontrarPessoaPorCodigo(codigo) {
 // Função para atualizar a wishlist de uma pessoa
 async function atualizarWishlist(codigo, novaWishlist) {
     try {
-        const pessoa = await encontrarPessoaPorCodigo(codigo);
-        
-        if (!pessoa) {
-            // Se a pessoa não existe
-            console.error('Pessoa não encontrada para o código:', codigo);
+        const nome = Object.keys(codigosPessoais).find(
+            nome => codigosPessoais[nome] === codigo
+        );
+
+        if (!nome) {
+            console.error('Nome não encontrado para o código:', codigo);
             return false;
         }
 
-        // Atualizar linha existente
-        const range = `Sheet1!A${pessoa.linhaIndex}:C${pessoa.linhaIndex}`;
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?valueInputOption=RAW&key=${API_KEY}`;
-
-        console.log('URL chamada para atualizar wishlist:', url); // Log da URL
-        console.log('Dados enviados para atualizar wishlist:', JSON.stringify({
-            values: [[pessoa.nome, codigo, JSON.stringify(novaWishlist)]]
-        })); // Log dos dados enviados
-
-        const response = await fetch(url, {
-            method: 'PUT',
+        const response = await fetch(BACKEND_URL, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                values: [[pessoa.nome, codigo, JSON.stringify(novaWishlist)]]
+                nome: nome,
+                codigo: codigo,
+                wishlist: JSON.stringify(novaWishlist)
             })
         });
 
-        const responseText = await response.text();
-        console.log('Resposta da API (atualizarWishlist):', responseText); // Log da resposta
-        return response.ok;
+        const data = await response.json();
+        console.log('Resposta do backend:', data);
+
+        return data.success;
     } catch (error) {
         console.error('Erro ao atualizar wishlist:', error);
         return false;
