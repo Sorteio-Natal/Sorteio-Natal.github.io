@@ -182,7 +182,7 @@ function adicionarItem() {
     const statusDiv = document.getElementById('minhaListaStatus');
     statusDiv.innerHTML = '✅ Item adicionado! Não te esqueças de guardar.';
     statusDiv.style.color = 'green';
-    setTimeout(() => statusDiv.innerHTML = '', 2000);
+    setTimeout(() => statusDiv.innerHTML = '', 10000);
 }
 
 // Remover item da lista
@@ -194,7 +194,7 @@ function removerItem(index) {
     const statusDiv = document.getElementById('minhaListaStatus');
     statusDiv.innerHTML = '🗑️ Item removido! Não te esqueças de guardar.';
     statusDiv.style.color = 'orange';
-    setTimeout(() => statusDiv.innerHTML = '', 2000);
+    setTimeout(() => statusDiv.innerHTML = '', 10000);
 }
 
 // Limpar toda a lista
