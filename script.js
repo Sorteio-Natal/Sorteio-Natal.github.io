@@ -151,7 +151,7 @@ function atualizarInterfaceLista() {
         li.style.alignItems = 'center';
         
         li.innerHTML = `
-            <span style="color: #2d8a3a;">🎁 ${item}</span>
+            <span style="color: #2d8a3a;">${item}</span>
             <button onclick="removerItem(${index})" style="background: #ff4444; color: black; border: none; border-radius: 15px; width: 30px; height: 30px; cursor: pointer; font-weight: bold; font-size: 18px; display: flex; align-items: center; justify-content: center; padding: 0;">✕</button>
         `;
         
@@ -239,17 +239,17 @@ async function carregarListaAmigo() {
     listaAmigoSection.style.display = 'block';
     
     if (listaAmigo.length > 0) {
-        let html = `<h4>🎁 Lista de Desejos de ${amigoSecretoAtual}:</h4><ul style="text-align: left; list-style-type: none; padding: 0;">`;
+        let html = `<h4>Lista de Prendas de ${amigoSecretoAtual}:</h4><ul style="text-align: left; list-style-type: none; padding: 0;">`;
         
         listaAmigo.forEach(item => {
-            html += `<li style="padding: 8px; margin: 5px 0; background: #e8f5e8; border-radius: 5px;">🎁 ${item}</li>`;
+            html += `<li style="padding: 8px; margin: 5px 0; background: #e8f5e8; border-radius: 5px;">${item}</li>`;
         });
         
         html += '</ul>';
         listaAmigoContent.innerHTML = html;
     } else {
         listaAmigoContent.innerHTML = `
-            <p>${amigoSecretoAtual} ainda não adicionou a sua lista de desejos.</p>
+            <p>${amigoSecretoAtual} ainda não criou a sua lista de prendas.</p>
         `;
     }
 }
