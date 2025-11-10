@@ -46,7 +46,13 @@ async function atualizarWishlist(codigo, novaWishlist) {
             return false;
         }
 
-        const response = await fetch(BACKEND_URL, {
+        console.log('A enviar dados para o backend:', {
+            nome: nome,
+            codigo: codigo,
+            wishlist: JSON.stringify(novaWishlist)
+        });
+
+        const response = await fetch(`${BACKEND_URL}/atualizar`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,10 +64,19 @@ async function atualizarWishlist(codigo, novaWishlist) {
             })
         });
 
+        console.log('📊 Resposta do backend - Status:', response.status);
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Erro HTTP:', response.status, errorText);
+            return false;
+        }
+
         const data = await response.json();
         console.log('Resposta do backend:', data);
 
-        return data.success;
+        return data.success === true;
+        
     } catch (error) {
         console.error('Erro ao atualizar wishlist:', error);
         return false;
@@ -70,13 +85,18 @@ async function atualizarWishlist(codigo, novaWishlist) {
 
 // Função para obter wishlist de uma pessoa pelo nome
 async function obterWishlistPorNome(nome) {
-    const todosDados = await obterTodosDados();
-    
-    for (let i = 1; i < todosDados.length; i++) {
-        const linha = todosDados[i];
-        if (linha[0] === nome) {
-            return JSON.parse(linha[2] || '[]');
+    try{
+        const todosDados = await obterTodosDados();
+        
+        for (let i = 1; i < todosDados.length; i++) {
+            const linha = todosDados[i];
+            if (linha[0] === nome) {
+                return JSON.parse(linha[2] || '[]');
+            }
         }
+        return [];
+    } catch (error) {
+        console.error('Erro ao obter wishlist por nome:', error);
+        return [];
     }
-    return [];
 }
