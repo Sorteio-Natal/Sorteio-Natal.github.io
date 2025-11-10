@@ -1,9 +1,9 @@
-const BACKEND_URL =  'https://sorteio-backend-819546592483.europe-west1.run.app';
+const BACKEND_URL = 'https://sorteio-backend-819546592483.europe-west1.run.app';
 
 // Função para obter TODOS os dados da sheet
 async function obterTodosDados() {
     try {
-        const url = 'https://sorteio-backend-abc123.a.run.app/obter-dados'; // Endpoint do backend
+        const url = `${BACKEND_URL}/obter-dados`; // Endpoint do backend
         console.log('URL chamada para obter dados:', url);
         const response = await fetch(url);
         const data = await response.json();
@@ -60,7 +60,7 @@ async function atualizarWishlist(codigo, novaWishlist) {
             body: JSON.stringify({
                 nome: nome,
                 codigo: codigo,
-                wishlist: JSON.stringify(novaWishlist)
+                wishlist: novaWishlist
             })
         });
 
@@ -91,7 +91,12 @@ async function obterWishlistPorNome(nome) {
         for (let i = 1; i < todosDados.length; i++) {
             const linha = todosDados[i];
             if (linha[0] === nome) {
-                return JSON.parse(linha[2] || '[]');
+                try {
+                    return JSON.parse(linha[2] || '[]');
+                } catch (error) {
+                    console.error('Erro ao parsar wishlist', parseError);
+                    return [];
+                }
             }
         }
         return [];
