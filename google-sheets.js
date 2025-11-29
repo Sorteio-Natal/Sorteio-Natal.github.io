@@ -37,9 +37,7 @@ async function encontrarPessoaPorCodigo(codigo) {
 // Função para atualizar a wishlist de uma pessoa
 async function atualizarWishlist(codigo, novaWishlist) {
     try {
-        const nome = Object.keys(codigosPessoais).find(
-            nome => codigosPessoais[nome] === codigo
-        );
+        const nome = codigoParaNome[codigo];
 
         if (!nome) {
             console.error('Nome não encontrado para o código:', codigo);
@@ -84,13 +82,13 @@ async function atualizarWishlist(codigo, novaWishlist) {
 }
 
 // Função para obter wishlist de uma pessoa pelo nome
-async function obterWishlistPorNome(nome) {
+async function obterWishlistPorCodigo(codigo) {
     try{
         const todosDados = await obterTodosDados();
         
         for (let i = 1; i < todosDados.length; i++) {
             const linha = todosDados[i];
-            if (linha[0] === nome) {
+            if (linha[1] === codigo) {
                 const wishlistStr = linha[2] || '[]';
                 console.log('Wishlist string encontrada:', wishlistStr);
                 try {
@@ -104,7 +102,7 @@ async function obterWishlistPorNome(nome) {
         }
         return [];
     } catch (error) {
-        console.error('Erro ao obter wishlist por nome:', error);
+        console.error('Erro ao obter wishlist por codigo:', error);
         return [];
     }
 }

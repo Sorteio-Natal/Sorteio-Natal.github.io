@@ -1,12 +1,7 @@
-// Mapeamento reverso: código -> nome
-const codigoParaNome = {};
-Object.keys(codigosPessoais).forEach(nome => {
-    codigoParaNome[codigosPessoais[nome]] = nome;
-});
-
 // Variáveis globais
 let amigoSecretoAtual = null;
-let pessoaAtual = null;
+let codigoPessoaAtual = null;
+let codigoAmigoSecretoAtual = null;
 let minhaWishlistAtual = [];
 
 function verificarCodigo() {
@@ -19,11 +14,13 @@ function verificarCodigo() {
     
     if (codigoParaNome[codigoInput]) {
         const nomePessoa = codigoParaNome[codigoInput];
-        const amigoSecreto = sorteioFinal[nomePessoa];
+        const codigoAmigoSecreto = sorteioFinal[codigoInput]; // Busca por código
+        const nomeAmigoSecreto = codigoParaNome[codigoAmigoSecreto];
         
         // Guardar nas variáveis globais
-        pessoaAtual = nomePessoa;
-        amigoSecretoAtual = amigoSecreto;
+        amigoSecretoAtual = nomeAmigoSecreto;
+        codigoPessoaAtual = codigoInput;
+        codigoAmigoSecretoAtual = codigoAmigoSecreto;
         
         // Mostrar resultado com animação
         document.getElementById('loginSection').style.display = 'none';
@@ -31,7 +28,7 @@ function verificarCodigo() {
         
         // Animação de revelação
         document.querySelector('#resultadoSection h2').innerHTML = `🎅 Olá, ${nomePessoa}! O Teu Amigo Secreto é... 🎅`;
-        revelarResultado(amigoSecreto);
+        revelarResultado(nomeAmigoSecreto);
 
         document.getElementById('botoesAcao').style.display = 'block';
         
@@ -102,33 +99,9 @@ function criarNeve() {
     }, 300);
 }
 
-// Função para gerir desejos - ATUALIZADA
-/*
-function gerirDesejos() {
-    const codigoInput = document.getElementById('codigoInput').value.trim().toUpperCase();
-    
-    if (!codigoInput) {
-        alert('Por favor, insere o teu código primeiro!');
-        return;
-    }
-    
-    if (codigoParaNome[codigoInput]) {
-        pessoaAtual = codigoParaNome[codigoInput];
-        amigoSecretoAtual = sorteioFinal[pessoaAtual];
-        
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('desejosSection').style.display = 'block';
-        
-        carregarMinhaLista();
-    } else {
-        alert('Código inválido!');
-    }
-}
-*/
-
 // Carregar minha lista - ATUALIZADA
 async function carregarMinhaLista() {
-    minhaWishlistAtual = await obterWishlistPorNome(pessoaAtual);
+    minhaWishlistAtual = await obterWishlistPorCodigo(codigoPessoaAtual);
     atualizarInterfaceLista();
 }
 
@@ -218,7 +191,7 @@ async function guardarMinhaLista() {
     statusDiv.innerHTML = '⏳ A guardar...';
     statusDiv.style.color = 'blue';
     
-    const sucesso = await atualizarWishlist(codigosPessoais[pessoaAtual], minhaWishlistAtual);
+    const sucesso = await atualizarWishlist(codigoPessoaAtual, minhaWishlistAtual);
     
     if (sucesso) {
         statusDiv.innerHTML = '✅ Lista guardada com sucesso!';
@@ -234,7 +207,7 @@ async function guardarMinhaLista() {
 
 // Carregar lista do amigo - ATUALIZADA
 async function carregarListaAmigo() {
-    const listaAmigo = await obterWishlistPorNome(amigoSecretoAtual);
+    const listaAmigo = await obterWishlistPorCodigo(codigoAmigoSecretoAtual);
     const listaAmigoSection = document.getElementById('listaAmigoSection');
     const listaAmigoContent = document.getElementById('listaAmigoContent');
     

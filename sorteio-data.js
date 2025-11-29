@@ -1,33 +1,33 @@
 const sorteioFinal = {
-    'Miguel': 'Teste',
-    'Maria': 'Tó',
-    'Ricardo': 'Isabel Silva',
-    'Fernando': 'Isabel Freitas',
-    'Gloria': 'Marlene',
-    'Marcelo': 'Francisco',
-    'Rita': 'Gloria',
-    'Maria José': 'Lucia Paula',
-    'Mafalda': 'Maria',
-    'Zé Carlos': 'Rui',
-    'Isabel Silva': 'Ricardo',
-    'Diogo': 'Marcelo',
-    'Vanessa': 'Fernando',
-    'Sofia': 'Rita',
-    'Tó': 'Mafalda',
-    'Lucia Paula': 'Zé Carlos',
-    'Filipa': 'Roberto',
-    'Francisco': 'Avó Candida',
-    'Isabel Freitas': 'Diogo',
-    'Beta': 'Sofia',
-    'Rui': 'Vanessa',
-    'Tia Rosa': 'Maria José',
-    'Tia Dete': 'Miguel',
-    'Marlene': 'Tia Dete',
-    'Roberto': 'Tia Rosa',
-    'Avó Candida': 'Beta',
+    'N54321': 'N54321',
+    'N39285': 'N67412',
+    'N15632': 'N25789',
+    'N47896': 'N12384',
+    'N56321': 'N67849',
+    'N68947': 'N94627',
+    'N74258': 'N56321',
+    'N81563': 'N78523',
+    'N92634': 'N39285',
+    'N13475': 'N34516',
+    'N25789': 'N15632',
+    'N36842': 'N68947',
+    'N49267': 'N47896',
+    'N51839': 'N74258',
+    'N67412': 'N92634',
+    'N78523': 'N13475',
+    'N83156': 'N78951',
+    'N94627': 'N89162',
+    'N12384': 'N36842',
+    'N23495': 'N51839',
+    'N34516': 'N49267',
+    'N45627': 'N81563',
+    'N56738': 'N54321',
+    'N67849': 'N56738',
+    'N78951': 'N45627',
+    'N89162': 'N23495'
 };
 
-const codigosPessoais = {
+const nomeParaCodigo = {
     'Teste': 'N54321',
     'Miguel': 'N28471',
     'Maria': 'N39285',
@@ -57,8 +57,33 @@ const codigosPessoais = {
     'Avó Candida': 'N89162'
 };
 
-
-
-
-
+const codigoParaNome =  {
+    'N54321': 'Teste',
+    'N28471': 'Miguel',
+    'N39285': 'Maria',
+    'N15632': 'Ricardo',
+    'N47896': 'Fernando',
+    'N56321': 'Gloria',
+    'N68947': 'Marcelo',
+    'N74258': 'Rita',
+    'N81563': 'Maria José',
+    'N92634': 'Mafalda',
+    'N13475': 'Zé Carlos',
+    'N25789': 'Isabel Silva',
+    'N36842': 'Diogo',
+    'N49267': 'Vanessa',
+    'N51839': 'Sofia',
+    'N67412': 'Tó',
+    'N78523': 'Lucia Paula',
+    'N83156': 'Filipa',
+    'N94627': 'Francisco',
+    'N12384': 'Isabel Freitas',
+    'N23495': 'Beta',
+    'N34516': 'Rui',
+    'N45627': 'Tia Rosa',
+    'N56738': 'Tia Dete',
+    'N67849': 'Marlene',
+    'N78951': 'Roberto',
+    'N89162': 'Avó Candida'
+}
 
