@@ -25,7 +25,20 @@ const sorteioFinal = {
     'N56738': 'N28471',
     'N67849': 'N56738',
     'N78951': 'N45627',
-    'N89162': 'N23495'
+    'N89162': 'N23495',
+
+    'R16020': 'R44323',
+    'R88462': 'R26085',
+    'R82895': 'R97143',
+    'R87264': 'R27079',
+    'R44323': 'R87264',
+    'R27079': 'R16020',
+    'R57802': 'R29229',
+    'R79743': 'R82895',
+    'R29229': 'R79743',
+    'R26085': 'R57802',
+    'R97143': 'R99684',
+    'R99684': 'R88462',
 };
 
 const nomeParaCodigo = {
@@ -55,7 +68,20 @@ const nomeParaCodigo = {
     'Tia Dete': 'N56738',
     'Marlene': 'N67849',
     'Roberto': 'N78951',
-    'Avó Candida': 'N89162'
+    'Avó Candida': 'N89162',
+
+    'Beta': 'R16020',
+    'Rui': 'R88462',
+    'Bruno': 'R82895',
+    'Raquel': 'R87264',
+    'Hélio': 'R44323',
+    'Marta': 'R27079',
+    'Fátima': 'R57802',
+    'Armindo': 'R79743',
+    'Sónia R': 'R29229',
+    'Hugo': 'R26085',
+    'Sónia S': 'R97143',
+    'Rosa': 'R99684'
 };
 
 const codigoParaNome =  {
@@ -85,6 +111,19 @@ const codigoParaNome =  {
     'N56738': 'Tia Dete',
     'N67849': 'Marlene',
     'N78951': 'Roberto',
-    'N89162': 'Avó Candida'
+    'N89162': 'Avó Candida',
+
+    'R16020': 'Beta',
+    'R88462': 'Rui',
+    'R82895': 'Bruno',
+    'R87264': 'Raquel',
+    'R44323': 'Hélio',
+    'R27079': 'Marta',
+    'R57802': 'Fátima',
+    'R79743': 'Armindo',
+    'R29229': 'Sónia R',
+    'R26085': 'Hugo',
+    'R97143': 'Sónia S',
+    'R99684': 'Rosa'
 }
 
