@@ -103,6 +103,7 @@ function criarNeve() {
 }
 
 // Função para gerir desejos - ATUALIZADA
+/*
 function gerirDesejos() {
     const codigoInput = document.getElementById('codigoInput').value.trim().toUpperCase();
     
@@ -123,6 +124,7 @@ function gerirDesejos() {
         alert('Código inválido!');
     }
 }
+*/
 
 // Carregar minha lista - ATUALIZADA
 async function carregarMinhaLista() {
