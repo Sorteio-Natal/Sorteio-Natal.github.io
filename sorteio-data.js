@@ -26,19 +26,6 @@ const sorteioFinal = {
     'N67849': 'N56738',
     'N78951': 'N45627',
     'N89162': 'N23495',
-
-    'R16020': 'R44323',
-    'R88462': 'R26085',
-    'R82895': 'R97143',
-    'R87264': 'R27079',
-    'R44323': 'R87264',
-    'R27079': 'R16020',
-    'R57802': 'R29229',
-    'R79743': 'R82895',
-    'R29229': 'R79743',
-    'R26085': 'R57802',
-    'R97143': 'R99684',
-    'R99684': 'R88462',
 };
 
 const nomeParaCodigo = {
@@ -54,8 +41,6 @@ const nomeParaCodigo = {
     'Mafalda': 'N92634',
     'Zé Carlos': 'N13475',
     'Isabel Silva': 'N25789',
-    'Diogo': 'N36842',
-    'Vanessa': 'N49267',
     'Sofia': 'N51839',
     'Tó': 'N67412',
     'Lucia Paula': 'N78523',
@@ -69,19 +54,6 @@ const nomeParaCodigo = {
     'Marlene': 'N67849',
     'Roberto': 'N78951',
     'Avó Candida': 'N89162',
-
-    'Beta': 'R16020',
-    'Rui': 'R88462',
-    'Bruno': 'R82895',
-    'Raquel': 'R87264',
-    'Hélio': 'R44323',
-    'Marta': 'R27079',
-    'Fátima': 'R57802',
-    'Armindo': 'R79743',
-    'Sónia R': 'R29229',
-    'Hugo': 'R26085',
-    'Sónia S': 'R97143',
-    'Rosa': 'R99684'
 };
 
 const codigoParaNome =  {
@@ -97,8 +69,6 @@ const codigoParaNome =  {
     'N92634': 'Mafalda',
     'N13475': 'Zé Carlos',
     'N25789': 'Isabel Silva',
-    'N36842': 'Diogo',
-    'N49267': 'Vanessa',
     'N51839': 'Sofia',
     'N67412': 'Tó',
     'N78523': 'Lucia Paula',
@@ -112,18 +82,5 @@ const codigoParaNome =  {
     'N67849': 'Marlene',
     'N78951': 'Roberto',
     'N89162': 'Avó Candida',
-
-    'R16020': 'Beta',
-    'R88462': 'Rui',
-    'R82895': 'Bruno',
-    'R87264': 'Raquel',
-    'R44323': 'Hélio',
-    'R27079': 'Marta',
-    'R57802': 'Fátima',
-    'R79743': 'Armindo',
-    'R29229': 'Sónia R',
-    'R26085': 'Hugo',
-    'R97143': 'Sónia S',
-    'R99684': 'Rosa'
 }
 
